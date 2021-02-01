@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: 421320058418.dkr.ecr.us-east-2.amazonaws.com/nginx-base-image:v1
         command:
           - /bin/sh
           - -c
