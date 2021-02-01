@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx
+  name: nginx-deploy-main
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nginx-main
+  template:
+    metadata:
+      labels:
+        run: nginx-main
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        command:
+          - /bin/sh
+          - -c
+          - while sleep 300; do date >> new.txt && curl google.com >> new.txt; done
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 256m
+            memory: 128Mi
+       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-main
+  labels:
+    run: nginx
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: nginx-main
