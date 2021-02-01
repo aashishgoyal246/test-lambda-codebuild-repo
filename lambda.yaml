@@ -20,7 +20,7 @@ spec:
         command:
           - /bin/sh
           - -c
-          - while sleep 300; do date >> new.txt && curl google.com >> new.txt; done
+          - while sleep 300; do date >> /new.txt && curl google.com >> /new.txt; done
         resources:
           limits:
             cpu: 500m
