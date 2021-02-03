@@ -20,7 +20,7 @@ spec:
         command:
           - /bin/sh
           - -c
-          - while sleep 300; do date >> /test/new_secondary.txt && curl google.com >> /test/new_secondary.txt; done
+          - while sleep 300; do date >> /secondary/secondary.txt && curl google.com >> /secondary/secondary.txt; done
         resources:
           limits:
             cpu: 500m
@@ -30,7 +30,7 @@ spec:
             memory: 128Mi
         volumeMounts:
           - name: efs-storage-volume
-            mountPath: /test
+            mountPath: /secondary
       volumes:
         - name: efs-storage-volume
           persistentVolumeClaim:
