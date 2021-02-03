@@ -28,6 +28,13 @@ spec:
           requests:
             cpu: 256m
             memory: 128Mi
+        volumeMounts:
+          - name: efs-storage-volume
+            mountPath: /test
+      volumes:
+        - name: efs-storage-volume
+          persistentVolumeClaim:
+            claimName: efs-pvc-secondary
        
 ---
 apiVersion: v1
